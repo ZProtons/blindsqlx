@@ -23,7 +23,6 @@ Usage:
 """
 
 import argparse
-import string
 import sys
 
 import requests

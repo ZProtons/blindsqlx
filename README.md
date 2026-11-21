@@ -1,5 +1,7 @@
 # blindsqlx
 
+[![CI](https://github.com/ZProtons/blindsqlx/actions/workflows/ci.yml/badge.svg)](https://github.com/ZProtons/blindsqlx/actions/workflows/ci.yml)
+
 A small, generic blind boolean-based SQL injection extractor. Point it
 at any app where you already know a boolean SQLi oracle exists, and it
 extracts any scalar SQL expression you give it — character by character,
@@ -69,6 +71,20 @@ a lab I built with a deliberately quiet blind-SQLi login form (no
 errors, no leaked data, naive space/keyword filter). `blindsqlx`
 recovers both the administrator's password and the lab's flag with no
 app-specific code — only the four arguments above.
+
+## Development
+
+```sh
+pip install -r requirements-dev.txt
+ruff check .
+pytest tests/ -v
+```
+
+The test suite covers `build_oracle()` and `extract_string()` directly
+against a fake in-memory oracle — no network calls, no real target
+needed — plus the marker-injection, space-collapsing, and form-data
+substitution behavior. CI runs lint + tests on Python 3.10–3.12 on every
+push and PR.
 
 ## Scope
 
